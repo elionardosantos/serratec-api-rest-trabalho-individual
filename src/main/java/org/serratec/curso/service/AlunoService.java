@@ -40,6 +40,7 @@ public class AlunoService {
         alunoDTO.setNome(aluno.get().getNome());
         alunoDTO.setEmail(aluno.get().getEmail());
         alunoDTO.setDataNascimento(aluno.get().getDataNascimento());
+        alunoDTO.setPerfilSocial(aluno.get().getPerfilSocial());
 
         return alunoDTO;
     }

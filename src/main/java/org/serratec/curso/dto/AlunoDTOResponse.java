@@ -3,6 +3,7 @@ package org.serratec.curso.dto;
 import java.time.LocalDate;
 
 import org.serratec.curso.domain.Aluno;
+import org.serratec.curso.domain.PerfilSocial;
 
 public class AlunoDTOResponse {
 
@@ -10,6 +11,7 @@ public class AlunoDTOResponse {
     private String nome;
     private String email;
     private LocalDate dataNascimento;
+    private PerfilSocial perfilSocial;
     
     public AlunoDTOResponse() {
     }
@@ -19,6 +21,7 @@ public class AlunoDTOResponse {
         this.nome = aluno.getNome();
         this.email = aluno.getEmail();
         this.dataNascimento = aluno.getDataNascimento();
+        this.perfilSocial = aluno.getPerfilSocial();
     }
 
     public Long getId() {
@@ -51,6 +54,14 @@ public class AlunoDTOResponse {
 
     public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
+    }
+
+    public PerfilSocial getPerfilSocial() {
+        return perfilSocial;
+    }
+
+    public void setPerfilSocial(PerfilSocial perfilSocial) {
+        this.perfilSocial = perfilSocial;
     }
     
 }

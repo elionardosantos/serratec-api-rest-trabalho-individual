@@ -5,11 +5,15 @@ import java.time.LocalDate;
 import org.serratec.curso.dto.AlunoDTORequest;
 import org.serratec.curso.dto.AlunoDTOResponse;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
@@ -33,15 +37,14 @@ public class Aluno {
     @Column(name = "data_nascimento")
     private LocalDate dataNascimento;
 
-    public Aluno() {
-    }
+    @OneToOne(
+        cascade = CascadeType.ALL,
+        fetch = FetchType.LAZY
+    )
+    @JoinColumn(name = "id_perfil_social")
+    private PerfilSocial perfilSocial;
 
-    public Aluno(Long id, @Size(max = 120) String nome, @Email String email, String senha, LocalDate dataNascimento) {
-        this.id = id;
-        this.nome = nome;
-        this.email = email;
-        this.senha = senha;
-        this.dataNascimento = dataNascimento;
+    public Aluno() {
     }
 
     public Aluno(AlunoDTORequest alunoDTORequest) {
@@ -49,6 +52,13 @@ public class Aluno {
         this.email = alunoDTORequest.getEmail();
         this.senha = alunoDTORequest.getSenha();
         this.dataNascimento = alunoDTORequest.getDataNascimento();
+        this.perfilSocial = alunoDTORequest.getPerfilSocial();
+    }
+
+    public Aluno(AlunoDTOResponse alunoDTOResponse) {
+        this.nome = alunoDTOResponse.getNome();
+        this.email = alunoDTOResponse.getEmail();
+        this.dataNascimento = alunoDTOResponse.getDataNascimento();
     }
 
     public AlunoDTOResponse toDTO() {
@@ -57,6 +67,7 @@ public class Aluno {
         alunoDTO.setNome(this.nome);
         alunoDTO.setEmail(this.email);
         alunoDTO.setDataNascimento(this.dataNascimento);
+        alunoDTO.setPerfilSocial(this.perfilSocial);
         return alunoDTO;
     }
 
@@ -98,6 +109,14 @@ public class Aluno {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public PerfilSocial getPerfilSocial() {
+        return perfilSocial;
+    }
+
+    public void setPerfilSocial(PerfilSocial perfilSocial) {
+        this.perfilSocial = perfilSocial;
     }
 
     
