@@ -10,7 +10,6 @@ import org.serratec.curso.dto.AlunoDTOResponse;
 import org.serratec.curso.repository.AlunoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.DeleteMapping;
 
 import jakarta.transaction.Transactional;
 
