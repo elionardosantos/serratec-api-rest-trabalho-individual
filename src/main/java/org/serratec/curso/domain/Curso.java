@@ -6,12 +6,14 @@ import org.serratec.curso.dto.CursoDTORequest;
 import org.serratec.curso.dto.CursoDTOResponse;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -27,6 +29,10 @@ public class Curso {
     @Size(max = 120, message = "O título excedeu o tamanho máximo de 120 caracteres")
     @NotBlank(message = "O título do curso é obrigatório")
     private String titulo;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "professor_id")
+    private Professor professor;
 
     @ManyToMany
     @JoinTable(
@@ -78,6 +84,13 @@ public class Curso {
         this.alunos = alunos;
     }
 
+    public Professor getProfessor() {
+        return professor;
+    }
+
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
+    }
     
 
 }

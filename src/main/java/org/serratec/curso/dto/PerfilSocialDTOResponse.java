@@ -5,11 +5,17 @@ import java.math.BigDecimal;
 import org.serratec.curso.domain.Aluno;
 import org.serratec.curso.domain.PerfilSocial;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 public class PerfilSocialDTOResponse {
 
+    @Schema(description = "ID único gerado no banco de dados", example = "42")
     private Long id;
+    @Schema(description = "Escolaridade do aluno", example = "Ensino Superior Completo")
     private String escolaridade;
+    @Schema(description = "Renda do aluno", example = "2000.00")
     private BigDecimal renda;
+    @Schema(description = "Aluno associado ao perfil social", example = "{\"id\": 1, \"nome\": \"João Silva\"}")
     private Aluno aluno;
 
     public PerfilSocialDTOResponse() {

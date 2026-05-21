@@ -1,10 +1,16 @@
 package org.serratec.curso.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 public class ProfessorDTORequest {
 
+    @Schema(description = "ID único gerado no banco de dados", example = "42")
     private Long id;
+    @Schema(description = "Nome do professor", example = "Dr. João da Silva")
     private String nome;
+    @Schema(description = "Email do professor", example = "joao.silva@university.edu")
     private String email;
+    @Schema(description = "Senha do professor", example = "senha123")
     private String senha;
     
     public ProfessorDTORequest() {
