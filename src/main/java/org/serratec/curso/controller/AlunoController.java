@@ -38,7 +38,7 @@ public class AlunoController {
     }
 
     @PostMapping
-    public ResponseEntity<AlunoDTOResponse> save(@Valid @RequestBody AlunoDTORequest aluno) {
+    public ResponseEntity<AlunoDTOResponse> save(@RequestBody @Valid AlunoDTORequest aluno) {
 
             AlunoDTOResponse alunoDTO = alunoService.save(aluno);
 

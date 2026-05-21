@@ -1,9 +1,12 @@
 package org.serratec.curso.domain;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.serratec.curso.dto.AlunoDTORequest;
 import org.serratec.curso.dto.AlunoDTOResponse;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -13,9 +16,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -27,9 +32,10 @@ public class Aluno {
     private Long id;
 
     @Size(max = 120)
+    @NotBlank(message = "O nome do aluno é obrigatório")
     private String nome;
 
-    @Email
+    @Email(message = "Um email válido é obrigatório")
     private String email;
 
     private String senha;
@@ -43,6 +49,10 @@ public class Aluno {
     )
     @JoinColumn(name = "id_perfil_social")
     private PerfilSocial perfilSocial;
+
+    @ManyToMany(mappedBy = "alunos")
+    @JsonIgnore
+    private List<Curso> cursos;
 
     public Aluno() {
     }
@@ -59,6 +69,7 @@ public class Aluno {
         this.nome = alunoDTOResponse.getNome();
         this.email = alunoDTOResponse.getEmail();
         this.dataNascimento = alunoDTOResponse.getDataNascimento();
+        this.perfilSocial = alunoDTOResponse.getPerfilSocial();
     }
 
     public AlunoDTOResponse toDTO() {
@@ -118,6 +129,15 @@ public class Aluno {
     public void setPerfilSocial(PerfilSocial perfilSocial) {
         this.perfilSocial = perfilSocial;
     }
+
+    public List<Curso> getCursos() {
+        return cursos;
+    }
+
+    public void setCursos(List<Curso> cursos) {
+        this.cursos = cursos;
+    }
+
 
     
 }

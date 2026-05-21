@@ -1,7 +1,9 @@
 package org.serratec.curso.dto;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import org.serratec.curso.domain.Curso;
 import org.serratec.curso.domain.PerfilSocial;
 
 public class AlunoDTORequest {
@@ -13,7 +15,16 @@ public class AlunoDTORequest {
 	private String confirmaSenha;
     private LocalDate dataNascimento;
     private PerfilSocial perfilSocial;
+    private List<Curso> cursos;
     
+    public List<Curso> getCursos() {
+        return cursos;
+    }
+
+    public void setCursos(List<Curso> cursos) {
+        this.cursos = cursos;
+    }
+
     public AlunoDTORequest() {
     }
 
