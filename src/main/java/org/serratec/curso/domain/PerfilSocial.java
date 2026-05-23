@@ -34,7 +34,6 @@ public class PerfilSocial {
     }
 
     public PerfilSocial(PerfilSocialDTORequest perfilSocialDTORequest) {
-        this.id = perfilSocialDTORequest.getId();
         this.renda = perfilSocialDTORequest.getRenda();
         this.escolaridade = perfilSocialDTORequest.getEscolaridade();
     }
