@@ -8,8 +8,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 public class PerfilSocialDTORequest {
 
-    @Schema(description = "ID único gerado no banco de dados", example = "42")
-    private Long id;
     @Schema(description = "Renda do aluno", example = "2000.00")
     private BigDecimal renda;
     @Schema(description = "Escolaridade do aluno", example = "Ensino Superior Completo")
@@ -21,18 +19,9 @@ public class PerfilSocialDTORequest {
     }
 
     public PerfilSocialDTORequest(PerfilSocialDTORequest perfil) {
-        this.id = perfil.getId();
         this.renda = perfil.getRenda();
         this.escolaridade = perfil.getEscolaridade();
         this.aluno = perfil.getAluno();
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public BigDecimal getRenda() {
